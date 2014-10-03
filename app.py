@@ -3,7 +3,7 @@
 """
 ScrapeStream
 
-App to routinely collect data from various sources and pushe to
+App to routinely collect data from various sources and push to
 a websocket.
 """
 

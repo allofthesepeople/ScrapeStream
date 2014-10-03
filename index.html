@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>ScraperPusher</title>
+        <style>
+        body {
+          font-family: helvetica-neue, helvetica, arial, sans-serif;
+          font-size: 14px;
+          color: #555;
+          margin: 10px 40px;
+        }
+        a {
+          color: #333;
+        }
+        a:visted {
+          color: #aaa;
+        }
+        #placeholder {
+          height: 300px;
+        }
+
+        </style>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript">
+        $(function() {
+            var ws = new WebSocket("ws://127.0.0.1:8000/");
+
+            ws.onmessage = function(evt) {
+                d = JSON.parse(evt.data)
+                html = '<article><h3><a target="_blank" href="'+ d.link +'">'+ d.title +'</a></h3><h4>'+ d.site +'</h4><p><em>'+ d.date +'</em></p><div>'+ d.summary +'</div></article>'
+                $("#placeholder").prepend(html)
+            }
+            ws.onopen = function(evt) {
+                $('#status').html('<b>Connected</b>');
+            }
+            ws.onerror = function(evt) {
+                $('#status').html('<b>Error</b>');
+            }
+            ws.onclose = function(evt) {
+                $('#status').html('<b>Closed</b>');
+            }
+        });
+    </script>
+    </head>
+    <body>
+        <h1>ScraperPusher</h1>
+        <div id="status">Not Connected</div>
+        <div id="placeholder"></div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+[
+  {
+    "url":    "http://www.theguardian.com/world/rss",
+    "rate":   60,
+    "parser": "rss"
+    },
+  {
+    "url":    "http://feeds.bbci.co.uk/news/rss.xml",
+    "rate":   60,
+    "parser": "rss"
+  },
+  {
+    "name":     "Last.fm: hyped artists",
+    "url":      "http://www.last.fm/charts/artists/hyped/place/all",
+    "rate":     60,
+    "parser":   "html",
+    "url_root": "http://www.last.fm",
+    "tags":
+      {
+        "section_wrap": "div.rankedChart",
+        "item_wrap":    "li.rankItem",
+        "title":        "h4 span.rankItem-title",
+        "link":         "a.rankItem-blockLink",
+        "date":         "",
+        "summary":      "div.wikiParagraphs *"
+      }
+  }
+]

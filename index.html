@@ -26,8 +26,11 @@
 
             ws.onmessage = function(evt) {
                 d = JSON.parse(evt.data)
-                html = '<article><h3><a target="_blank" href="'+ d.link +'">'+ d.title +'</a></h3><h4>'+ d.site +'</h4><p><em>'+ d.date +'</em></p><div>'+ d.summary +'</div></article>'
-                $("#placeholder").prepend(html)
+                html = '<article><h3><a target="_blank" href="'+ d.link +'">'+ d.title +'</a></h3><h4>'+ d.site +'</h4><p><em>'+ d.date +'</em></p><div>'+ d.summary +'</div></article>';
+                $("#placeholder").prepend(html);
+                if ($("#placeholder article").length > 50) {
+                  $("#placeholder article:last").remove();
+                }
             }
             ws.onopen = function(evt) {
                 $('#status').html('<b>Connected</b>');
